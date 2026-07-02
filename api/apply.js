@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   }
 
   const {
-    name, email, gender, occupation, interest,
+    name, email, phone, gender, occupation, interest,
     participated, skills, conditions, commitment, company,
   } = req.body || {};
 
@@ -51,6 +51,7 @@ module.exports = async (req, res) => {
   const properties = {
     Name: { title: [{ text: { content: name.trim().slice(0, 200) } }] },
     Email: { email: email.trim().slice(0, 200) },
+    Phone: { phone_number: (phone || '').toString().trim().slice(0, 50) || null },
     'Participated Before': text(participated, 2000),
     Skills: text(skills, 2000),
     Conditions: text(conditions, 2000),

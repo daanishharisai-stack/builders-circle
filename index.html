@@ -427,6 +427,11 @@
       </div>
 
       <div class="field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="e.g. +91 98765 43210" />
+      </div>
+
+      <div class="field">
         <label>Gender</label>
         <div class="pills cols-2" role="radiogroup" aria-label="Gender">
           <input type="radio" id="g-male" name="gender" value="Male" />
@@ -518,6 +523,7 @@
 
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
       const gender = (form.querySelector('input[name="gender"]:checked') || {}).value || '';
       const occupation = (form.querySelector('input[name="occupation"]:checked') || {}).value || '';
       const interest = (form.querySelector('input[name="interest"]:checked') || {}).value || '';
@@ -544,7 +550,7 @@
         const res = await fetch('/api/apply', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, gender, occupation, interest, participated, skills, conditions, commitment, company }),
+          body: JSON.stringify({ name, email, phone, gender, occupation, interest, participated, skills, conditions, commitment, company }),
         });
 
         const data = await res.json();
