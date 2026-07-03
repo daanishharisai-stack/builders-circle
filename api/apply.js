@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
     const notionRes = await fetch('https://api.notion.com/v1/pages', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${NOTION_TOKEN}`,
+        Authorization: `Bearer ${NOTION_TOKEN.trim()}`,
         'Notion-Version': '2022-06-28',
         'Content-Type': 'application/json',
       },
