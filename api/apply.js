@@ -87,7 +87,9 @@ module.exports = async (req, res) => {
     if (!notionRes.ok) {
       const body = await notionRes.text();
       console.error('Notion API error', notionRes.status, body);
-      res.status(502).json({ ok: false, error: 'Could not save your application. Please try again.' });
+      let code = '';
+      try { code = JSON.parse(body).code || ''; } catch (e) {}
+      res.status(502).json({ ok: false, error: `Could not save your application. Please try again. [${notionRes.status} ${code}]` });
       return;
     }
 
